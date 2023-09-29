@@ -1,0 +1,19 @@
+{
+    "name": "HomePage Weather App",
+    "short_name": "HomePage",
+    "icons": [
+        {
+            "src": "/LogoB.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/LogoB.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#0373fc",
+    "background_color": "#ffffff",
+    "display": "standalone"
+}
