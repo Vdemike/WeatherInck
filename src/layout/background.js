@@ -11,8 +11,8 @@ const CurrentImage = styled.div`
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-image: ${({ nr, source }) => {
-		if (localStorage.getItem('TEA_customBackgroundURL')) {
-			return `url(${localStorage.getItem('TEA_customBackgroundURL')})`;
+		if (localStorage.getItem('customBackgroundURL')) {
+			return `url(${localStorage.getItem('customBackgroundURL')})`;
 		}
 		const res = Object.entries(source);
 		let src;
@@ -42,7 +42,7 @@ const Background = (props) => {
 	useEffect(() => {
 		const interval = setInterval(async () => {
 			const hourNow = new Date().getHours();
-			if (hour !== hourNow && (props.bgType === 'lapse' || localStorage.getItem('TEA_backgroundType') === 'lapse')) {
+			if (hour !== hourNow && (props.bgType === 'lapse' || localStorage.getItem('backgroundType') === 'lapse')) {
 				setTimeout(() => (imgRef.current.style.opacity = 0), 0);
 				setTimeout(() => setHour(hourNow), 450);
 				setTimeout(() => (imgRef.current.style.opacity = .5), 500);

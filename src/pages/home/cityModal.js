@@ -46,8 +46,8 @@ const CityModal = (props) => {
 		}
 		const recentCitiesArray = figureRecentCitiesArray(cityObj);
 
-		localStorage.setItem('TEA_recentCities', JSON.stringify(recentCitiesArray));
-		localStorage.setItem("TEA_cityData", JSON.stringify(cityObj));
+		localStorage.setItem('recentCities', JSON.stringify(recentCitiesArray));
+		localStorage.setItem("cityData", JSON.stringify(cityObj));
 		props.close();
 		props.refreshData();
 	};

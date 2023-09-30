@@ -15,9 +15,9 @@ const Settings = (props) => {
 	const form = useRef("");
 	const chosenEngine = localStorage.getItem("searchengine");
 	const chosenUnit = localStorage.getItem("tempunit");
-	const [searchInNew, setSearchInNew] = useState(localStorage.getItem("TEA_searchInNewWindow"));
-	const [cardsInNew, setCardsInNew] = useState(localStorage.getItem("TEA_cardsInNewWindow")); 
-	const nameValue = localStorage.getItem('TEA_nickname');
+	const [searchInNew, setSearchInNew] = useState(localStorage.getItem("searchInNewWindow"));
+	const [cardsInNew, setCardsInNew] = useState(localStorage.getItem("cardsInNewWindow")); 
+	const nameValue = localStorage.getItem('nickname');
 
 	const saveConfig = (e) => {
 		e.preventDefault();
@@ -31,9 +31,9 @@ const Settings = (props) => {
 		
 		localStorage.setItem("searchengine", checkedEng.dataset.engine);
 		localStorage.setItem("tempunit", checkedUnit.dataset.unit);
-		localStorage.setItem("TEA_searchInNewWindow", searchInNew ? 'true' : '');
-		localStorage.setItem("TEA_cardsInNewWindow", cardsInNew ? 'true' : '');
-		localStorage.setItem("TEA_nickname", yourName);
+		localStorage.setItem("searchInNewWindow", searchInNew ? 'true' : '');
+		localStorage.setItem("cardsInNewWindow", cardsInNew ? 'true' : '');
+		localStorage.setItem("nickname", yourName);
 
 		if (oldUnit !== checkedUnit.dataset.unit) props.refreshData();
 		props.close();

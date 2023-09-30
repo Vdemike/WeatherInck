@@ -137,15 +137,15 @@ export default function Weather(props) {
 	useClickAway(SearchRef, () => setSearchedCities([]), ["mousedown"]);
 
     useEffect(() => {
-		if (!recentCities && localStorage.getItem('TEA_recentCities')) 
-			setRecentCities(JSON.parse(localStorage.getItem('TEA_recentCities')));
+		if (!recentCities && localStorage.getItem('recentCities')) 
+			setRecentCities(JSON.parse(localStorage.getItem('recentCities')));
 			
 		if(!cityData)
-			if (localStorage.getItem("TEA_cityData")) 
-				setCityData(JSON.parse(localStorage.getItem("TEA_cityData")));
+			if (localStorage.getItem("cityData")) 
+				setCityData(JSON.parse(localStorage.getItem("cityData")));
 			else {
 				const baseCityData = {"city":"Warsaw","country":"PL","state":"Masovian Voivodeship","lat":52.2319581,"lon":21.0067249};
-				localStorage.setItem("TEA_cityData", JSON.stringify(baseCityData));
+				localStorage.setItem("cityData", JSON.stringify(baseCityData));
 				setCityData(baseCityData);
 			}
 		if (!unit)
@@ -157,31 +157,31 @@ export default function Weather(props) {
 				setUnit(baseUnit);
 			}
 		if (!backgroundType) 
-			if(localStorage.getItem("TEA_backgroundType")) 
-				setBackgroundType(localStorage.getItem("TEA_backgroundType"));
+			if(localStorage.getItem("backgroundType")) 
+				setBackgroundType(localStorage.getItem("backgroundType"));
 			else {
 				const baseBgType = 'photo';
-				localStorage.setItem('TEA_backgroundType', baseBgType);
+				localStorage.setItem('backgroundType', baseBgType);
 				setBackgroundType(baseBgType);
 			}
 		if (backgroundType === "photo")
-			if (localStorage.getItem("TEA_backgroundNumber"))
-				setBackgroundNumber(localStorage.getItem("TEA_backgroundNumber"));
+			if (localStorage.getItem("backgroundNumber"))
+				setBackgroundNumber(localStorage.getItem("backgroundNumber"));
 			else {
 				const baseBgNum = 8;
-				localStorage.setItem('TEA_backgroundNumber', baseBgNum);
+				localStorage.setItem('backgroundNumber', baseBgNum);
 				setBackgroundNumber(baseBgNum);
 			}
 		if (!hexColor)
-			if (localStorage.getItem('TEA_backgroundColor'))
-				setHexColor(localStorage.getItem('TEA_backgroundColor'));
+			if (localStorage.getItem('backgroundColor'))
+				setHexColor(localStorage.getItem('backgroundColor'));
 			else
-				localStorage.setItem('TEA_backgroundColor', '');
+				localStorage.setItem('backgroundColor', '');
 		if (!shadow)
-			if (localStorage.getItem('TEA_backgroundShadow'))
-				setShadow(localStorage.getItem('TEA_backgroundShadow'));
+			if (localStorage.getItem('backgroundShadow'))
+				setShadow(localStorage.getItem('backgroundShadow'));
 			else
-				localStorage.setItem('TEA_backgroundShadow', '50');
+				localStorage.setItem('backgroundShadow', '50');
 
 
 		if (!cityData || !unit) return;
@@ -264,9 +264,9 @@ export default function Weather(props) {
 
 		const recentCitiesArray = figureRecentCitiesArray(cityObj);
 
-		localStorage.setItem('TEA_recentCities', JSON.stringify(recentCitiesArray));
+		localStorage.setItem('recentCities', JSON.stringify(recentCitiesArray));
 		setRecentCities(recentCitiesArray);
-		localStorage.setItem('TEA_cityData', JSON.stringify(cityObj));
+		localStorage.setItem('cityData', JSON.stringify(cityObj));
 		setSearchedCities([]);
 		SearchRef.current.querySelector('input[type=search]').value = '';
 		setCityData(cityObj);
@@ -283,35 +283,35 @@ export default function Weather(props) {
 		}
 		const recentCitiesArray = figureRecentCitiesArray(newCityObject);
 
-		localStorage.setItem('TEA_recentCities', JSON.stringify(recentCitiesArray));
-		localStorage.setItem('TEA_cityData', JSON.stringify(newCityObject));
+		localStorage.setItem('recentCities', JSON.stringify(recentCitiesArray));
+		localStorage.setItem('cityData', JSON.stringify(newCityObject));
 		setRecentCities(recentCitiesArray);
 		setCityData(newCityObject);
 		setStatus('idle');
 	}
 	const changeBackgroundToImg = (e) => {
 		const backgroundNumber = e.currentTarget.children[0].dataset.index;
-		localStorage.setItem("TEA_backgroundType", 'photo');
-		localStorage.setItem("TEA_backgroundNumber", backgroundNumber);
+		localStorage.setItem("backgroundType", 'photo');
+		localStorage.setItem("backgroundNumber", backgroundNumber);
 		setBackgroundType('photo');
 		setBackgroundNumber(backgroundNumber)
 	}
 	const changeBackgroundToLapse = () => {
-		localStorage.setItem("TEA_backgroundType", 'lapse');
-		localStorage.setItem("TEA_backgroundNumber", '');
+		localStorage.setItem("backgroundType", 'lapse');
+		localStorage.setItem("backgroundNumber", '');
 		setBackgroundType('lapse');
 		setBackgroundNumber(null);
 	}
 	const changeBackgroundToCustom = () => {
-		localStorage.setItem("TEA_backgroundType", 'custom');
-		localStorage.setItem("TEA_backgroundNumber", '');
+		localStorage.setItem("backgroundType", 'custom');
+		localStorage.setItem("backgroundNumber", '');
 		setBackgroundType('custom');
 		setBackgroundNumber(null);
 	}
 
 	const changeBackgroundToColor = (hex) => {
-		localStorage.setItem("TEA_backgroundType", 'color');
-		localStorage.setItem("TEA_backgroundNumber", '');
+		localStorage.setItem("backgroundType", 'color');
+		localStorage.setItem("backgroundNumber", '');
 		setBackgroundType('color');
 		setHexColor(hex);
 		setBackgroundNumber(null);

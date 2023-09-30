@@ -18,41 +18,41 @@ const BackgroundModal = (props) => {
 	const [shadow, setShadow] = useState('50');
 
 	const customUrl = useRef('');
-	const urlVal = localStorage.getItem('TEA_customBackgroundURL');
+	const urlVal = localStorage.getItem('customBackgroundURL');
 
 	const handlePhotoClick = (e) => {
 		props.changeBackgroundToImg(e);
 		props.close();
-		localStorage.setItem('TEA_customBackgroundURL', '');
+		localStorage.setItem('customBackgroundURL', '');
 	}
 
 	const handleLapseClick = () => {
 		props.changeBackgroundToLapse();
 		props.close();
-		localStorage.setItem('TEA_customBackgroundURL', '');
+		localStorage.setItem('customBackgroundURL', '');
 	}
 
 	const handleChangeCustomBg = () => {
 		props.changeBackgroundToCustom();
 		props.close();
-		localStorage.setItem('TEA_customBackgroundURL', customUrl.current.value);
+		localStorage.setItem('customBackgroundURL', customUrl.current.value);
 	}
 
 	const handleChangeBgToColor = () => {
 		props.changeBackgroundToColor(color.hex);
 		props.close();
-		localStorage.setItem('TEA_customBackgroundURL', '');
-		localStorage.setItem('TEA_backgroundColor', color.hex);
+		localStorage.setItem('customBackgroundURL', '');
+		localStorage.setItem('backgroundColor', color.hex);
 	}
 
 	const handleChangeShadow = (e) => {
 		props.changeBackgroundShadow(e.target.value);
-		localStorage.setItem('TEA_backgroundShadow', e.target.value);
+		localStorage.setItem('backgroundShadow', e.target.value);
 	}
 
 	useEffect(() => {
-		if (localStorage.getItem('TEA_backgroundShadow'))
-			setShadow(localStorage.getItem('TEA_backgroundShadow'));
+		if (localStorage.getItem('backgroundShadow'))
+			setShadow(localStorage.getItem('backgroundShadow'));
 	}, [])
 
 	return (

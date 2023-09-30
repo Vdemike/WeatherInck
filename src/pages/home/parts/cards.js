@@ -48,7 +48,7 @@ const Cards = (props) => {
 	};
 
 	const handleOpenCard = (url) => {
-		const target = !!localStorage.getItem('TEA_cardsInNewWindow');
+		const target = !!localStorage.getItem('cardsInNewWindow');
 		window.open(url, target ? '_blank' : '_self');
 	}
 
