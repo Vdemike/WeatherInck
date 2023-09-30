@@ -255,8 +255,11 @@ const Home = (props) => {
 			'Good ',
 			'Have a good ',
 			'How do you feel this ',
-			'How are you doing this ',
-			'How are you feeling this ',
+			'Amazing job this ',
+			'Enjoy the ',
+			"Don't lose this ",
+			'Great job this ',
+			'You are awesome this ',
 			'You are doing great this ',
 		]
 		const randomNum = Math.floor(Math.random() * messages.length);
