@@ -7,7 +7,7 @@ import { DefaultRadio, ModalButton, ModalContainer, ModalInlineCheckbox, ModalIn
 import { RadioCircle, SelectContainer } from "../../styles/home/settings";
 import { BsGoogle } from "react-icons/bs";
 import { DiBingSmall } from "react-icons/di";
-import { FaAmazon, FaReddit, FaTwitch, FaWikipediaW, FaYahoo, FaYoutube } from "react-icons/fa";
+import { FaAmazon, FaReddit, FaTwitch, FaWikipediaW, FaYahoo, FaYoutube, FaFilm, FaGithub, FaTree } from "react-icons/fa";
 import { SiDuckduckgo } from "react-icons/si";
 import { FcGoogle } from "react-icons/fc";
 
@@ -91,6 +91,18 @@ const Settings = (props) => {
 							<ModalLabel type="wikipedia" cp>
 								<DefaultRadio defaultChecked={chosenEngine === "wikipedia"} name="searchEngine" data-engine="wikipedia" />
 								<FaWikipediaW />
+							</ModalLabel>
+							<ModalLabel type="imdb" cp>
+								<DefaultRadio defaultChecked={chosenEngine === "imdb"} name="searchEngine" data-engine="imdb" />
+								<FaFilm />
+							</ModalLabel>
+							<ModalLabel type="github" cp>
+								<DefaultRadio defaultChecked={chosenEngine === "github"} name="searchEngine" data-engine="github" />
+								<FaGithub />
+							</ModalLabel>
+							<ModalLabel type="ecosia" cp>
+								<DefaultRadio defaultChecked={chosenEngine === "ecosia"} name="searchEngine" data-engine="ecosia" />
+								<FaTree />
 							</ModalLabel>
 						</SelectContainer>
 					</ModalRow>

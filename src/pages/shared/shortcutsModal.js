@@ -81,7 +81,7 @@ const Shortcuts = (props) => {
                             <ModalShortcut>
                                 <ModalShortcutKey>shift</ModalShortcutKey>
                                 <span>+</span>
-                                <ModalShortcutKey>w</ModalShortcutKey>
+                                <ModalShortcutKey>y</ModalShortcutKey>
                                 <ModalShortcutResult>Youtube Engine</ModalShortcutResult>
                             </ModalShortcut>
                         </ModalRow>
@@ -91,6 +91,30 @@ const Shortcuts = (props) => {
                                 <span>+</span>
                                 <ModalShortcutKey>w</ModalShortcutKey>
                                 <ModalShortcutResult>Wikipedia Engine</ModalShortcutResult>
+                            </ModalShortcut>
+                        </ModalRow>
+                        <ModalRow>
+                            <ModalShortcut>
+                                <ModalShortcutKey>shift</ModalShortcutKey>
+                                <span>+</span>
+                                <ModalShortcutKey>i</ModalShortcutKey>
+                                <ModalShortcutResult>IMDB Engine</ModalShortcutResult>
+                            </ModalShortcut>
+                        </ModalRow>
+                        <ModalRow>
+                            <ModalShortcut>
+                                <ModalShortcutKey>shift</ModalShortcutKey>
+                                <span>+</span>
+                                <ModalShortcutKey>h</ModalShortcutKey>
+                                <ModalShortcutResult>Github Engine</ModalShortcutResult>
+                            </ModalShortcut>
+                        </ModalRow>
+                        <ModalRow>
+                            <ModalShortcut>
+                                <ModalShortcutKey>shift</ModalShortcutKey>
+                                <span>+</span>
+                                <ModalShortcutKey>e</ModalShortcutKey>
+                                <ModalShortcutResult>Ecosia Engine</ModalShortcutResult>
                             </ModalShortcut>
                         </ModalRow>
 					</ModalCardContainer>

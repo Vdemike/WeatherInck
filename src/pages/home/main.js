@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { BsExclamationLg } from "react-icons/bs";
 import { DiBingSmall } from "react-icons/di";
-import { FaYahoo, FaYoutube, FaTwitch, FaReddit } from "react-icons/fa";
+import { FaYahoo, FaYoutube, FaTwitch, FaReddit, FaFilm, FaGithub, FaTree} from "react-icons/fa";
 import { FcGoogle, FcWikipedia } from "react-icons/fc";
 import { MdSearch } from "react-icons/md";
 import { SiDuckduckgo } from "react-icons/si";
@@ -216,6 +216,15 @@ const Home = (props) => {
 			} else if (e.shiftKey && e.keyCode === 87) {
 				localStorage.setItem('searchengine', 'wikipedia');
 				setEngine('wikipedia');
+			} else if (e.shiftKey && e.keyCode === 73) {
+				localStorage.setItem('searchengine', 'imdb');
+				setEngine('imdb');
+			} else if (e.shiftKey && e.keyCode === 72) {
+				localStorage.setItem('searchengine', 'github');
+				setEngine('github');
+			} else if (e.shiftKey && e.keyCode === 69) {
+				localStorage.setItem('searchengine', 'ecosia');
+				setEngine('ecosia');
 			} else if (e.shiftKey && e.keyCode === 70) {
 				e.preventDefault();
 				searchRef.current.focus();
@@ -246,6 +255,9 @@ const Home = (props) => {
 			'Good ',
 			'Have a good ',
 			'How you feel this ',
+			'How are you doing',
+			'How are you feeling today',
+			'You are doing great',
 		]
 		const randomNum = Math.floor(Math.random() * messages.length);
 		if (randomNum > 3) {
@@ -289,10 +301,13 @@ const Home = (props) => {
 		else if (engine === "bing") enginePrefix = "https://www.bing.com/search?q=";
 		else if (engine === "yahoo") enginePrefix = "https://search.yahoo.com/search?p=";
 		else if (engine === "amazon") enginePrefix = "https://www.amazon.fr/s?k=";
+		else if (engine === "imdb") enginePrefix = "https://www.imdb.com/find/?q=";
 		else if (engine === "reddit") enginePrefix = "https://www.reddit.com/search/?q=";
 		else if (engine === "twitch") enginePrefix = "https://www.twitch.tv/search?term=";
 		else if (engine === "youtube") enginePrefix = "https://www.youtube.com/results?search_query=";
 		else if (engine === "wikipedia") enginePrefix = "https://en.wikipedia.org/w/index.php?search=";
+		else if (engine === "github") enginePrefix = "https://github.com/search?q=";
+		else if (engine === "ecosia") enginePrefix = "https://www.ecosia.org/search?method=index&q=";
 		else enginePrefix = "https://duckduckgo.com/?q=";
 
 		const searchInNew = localStorage.getItem('TEA_searchInNewWindow');
@@ -470,6 +485,10 @@ const Home = (props) => {
 							{engine === "twitch" && <FaTwitch />}
 							{engine === "youtube" && <FaYoutube />}
 							{engine === "wikipedia" && <FcWikipedia />}
+							{engine === "imdb" && <FaFilm />}
+							{engine === "github" && <FaGithub />}
+							{engine === "ecosia" && <FaTree />}
+
 						</FunctionBox>
 						<FunctionBox as="label" type="image" corner>
 							<MdSearch />

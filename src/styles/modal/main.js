@@ -151,6 +151,10 @@ export const ModalLabel = styled.label`
 					else if (type === "twitch") return "#9146ff";
 					else if (type === "youtube") return "#ff0000";
 					else if (type === "wikipedia") return "#000000";
+					else if (type === "imdb") return "#f24102";
+					else if (type === "github") return "#F05435";
+					else if (type === "ecosia") return "#0C8484";
+				
 				}};
 			}
 
@@ -171,6 +175,10 @@ export const ModalLabel = styled.label`
 					else if (type === "twitch") return "#9146ff";
 					else if (type === "youtube") return "#ff0000";
 					else if (type === "wikipedia") return "#000000";
+					else if (type === "imdb") return "#f24102";
+					else if (type === "github") return "#F05435";
+					else if (type === "ecosia") return "#0C8484";
+				
 				}};
 			}
 		`}

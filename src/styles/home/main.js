@@ -413,6 +413,9 @@ export const FunctionBox = styled.div`
 				else if (engine === "reddit") return "#f24102";
 				else if (engine === "twitch") return "#9146ff";
 				else if (engine === "youtube") return "#ff0000";
+				else if (engine === "imdb") return "#f24102";
+				else if (engine === "github") return "#F05435";
+				else if (engine === "ecosia") return "#0C8484";
 			}};
 		`}
 
