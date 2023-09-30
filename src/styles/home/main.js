@@ -55,7 +55,7 @@ export const Content = styled.div`
 	max-width: 1000px;
 	/* min-height: calc(100vh - 255px); */
 	margin: 0 auto;
-	margin-top: 150px;
+	margin-top: 80px;
 	display: flex;
 	flex-direction: column;
 	align-content: center;
@@ -65,7 +65,7 @@ export const Content = styled.div`
 	@media (max-width: 800px) {
 		width: 100%;
 		padding: 0 30px;
-		margin-top: 30px;
+		margin-top: 60px;
 	}
 
 	@media (max-width: 500px) {
@@ -347,14 +347,32 @@ export const UVColor = styled.div`
 `;
 
 // ? Content
-
-export const Greetings = styled.div`
-	padding: 10px 0;
+export const Time = styled.div`
+	padding: 1px 0;
 	color: #eee;
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
-	font-size: 20px;
+	font-size: 180px;
+	text-shadow: 0 0 8px #000;
+
+	code {
+		padding: 2px;
+	}
+
+	@media (max-width: 800px) {
+		font-size: 90px;
+		padding: 20px 0;
+	
+	}
+`;
+export const Greetings = styled.div`
+	padding: 20px 0;
+	color: #eee;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 30px;
 	text-shadow: 0 0 1px #000;
 
 	code {
@@ -370,13 +388,20 @@ export const SearchForm = styled.form`
 	width: 100%;
 `;
 export const SearchBox = styled.label`
-	position: relative;
-	width: 650px;
-	height: 100%;
-	display: flex;
-	@media (max-width: 800px) {
-		width: 100%;
-	}
+  position: relative;
+  width: 650px;
+  height: 100%;
+  display: flex;
+  opacity: 0.8;
+  transition: opacity 0.5s; 
+  
+  &:hover {
+    opacity: 1;
+  }
+
+  @media (max-width: 800px) {
+    width: 100%;
+  }
 `;
 export const UrlInput = styled.input`
 	height: 100%;

@@ -16,6 +16,7 @@ import {
 	AlertTop,
 	Content,
 	FunctionBox,
+	Time,
 	Greetings,
 	MenuContainer,
 	MenuMoreWeatherInfo,
@@ -471,9 +472,9 @@ const Home = (props) => {
 			</ModalContainer>
 
 			<Content>
+				<Time><code>{time}</code></Time>
 				<Greetings>
 					<span>{message}{nickname ? ',' : ''} <strong>{nickname ? ` ${nickname}` : ''}{mark}</strong></span>
-					<code>{time}</code>
 				</Greetings>
 				<SearchForm onSubmit={searchUrl}>
 					<SearchBox>
