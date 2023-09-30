@@ -254,10 +254,10 @@ const Home = (props) => {
 			"Hope you're fine",
 			'Good ',
 			'Have a good ',
-			'How you feel this ',
-			'How are you doing',
-			'How are you feeling today',
-			'You are doing great',
+			'How do you feel this ',
+			'How are you doing this ',
+			'How are you feeling this ',
+			'You are doing great this ',
 		]
 		const randomNum = Math.floor(Math.random() * messages.length);
 		if (randomNum > 3) {
