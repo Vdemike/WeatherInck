@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { BsExclamationLg } from "react-icons/bs";
 import { DiBingSmall } from "react-icons/di";
-import { FaYahoo, FaYoutube, FaTwitch, FaReddit, FaFilm, FaGithub, FaTree} from "react-icons/fa";
+import { FaYahoo, FaYoutube, FaTwitch, FaReddit, FaImdb, FaGithub, FaTree} from "react-icons/fa";
 import { FcGoogle, FcWikipedia } from "react-icons/fc";
 import { MdSearch } from "react-icons/md";
 import { SiDuckduckgo } from "react-icons/si";
@@ -488,7 +488,7 @@ const Home = (props) => {
 							{engine === "twitch" && <FaTwitch />}
 							{engine === "youtube" && <FaYoutube />}
 							{engine === "wikipedia" && <FcWikipedia />}
-							{engine === "imdb" && <FaFilm />}
+							{engine === "imdb" && <FaImdb />}
 							{engine === "github" && <FaGithub />}
 							{engine === "ecosia" && <FaTree />}
 
