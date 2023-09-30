@@ -266,7 +266,7 @@ const Home = (props) => {
 			else time = 'evening';
 		}
 		if (randomNum === messages.length - 1) {
-			setMark('?');
+			setMark('!');
 		} else {
 			setMark('!');
 		}
