@@ -288,7 +288,7 @@ const Home = (props) => {
 		if (engine === "google") enginePrefix = "https://www.google.com/search?q=";
 		else if (engine === "bing") enginePrefix = "https://www.bing.com/search?q=";
 		else if (engine === "yahoo") enginePrefix = "https://search.yahoo.com/search?p=";
-		else if (engine === "amazon") enginePrefix = "https://www.amazon.com/s?k=";
+		else if (engine === "amazon") enginePrefix = "https://www.amazon.fr/s?k=";
 		else if (engine === "reddit") enginePrefix = "https://www.reddit.com/search/?q=";
 		else if (engine === "twitch") enginePrefix = "https://www.twitch.tv/search?term=";
 		else if (engine === "youtube") enginePrefix = "https://www.youtube.com/results?search_query=";
