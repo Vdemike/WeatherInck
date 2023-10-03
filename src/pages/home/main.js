@@ -53,7 +53,6 @@ import Shortcuts from "../shared/shortcutsModal";
 const Home = (props) => {
 	const [cityData, setCityData] = useState(null);
 	const [isVisible, setIsVisible] = useState(false);
-	const { mailboxButton } = props; 
 	
 	useEffect(() => {
 	  const timer = setTimeout(() => {
@@ -371,7 +370,6 @@ const Home = (props) => {
 	const configModal = () => ModalService.open(ConfigModal);
 	const openWidget = () => ModalService.open(WidgetMobile);
 	const showShortcuts = () => ModalService.open(Shortcuts);
-	const [refresh, setRefresh] = useState(0);
 	const refreshCards = () => setRes({});
 	const refreshConfig = () => {
 		setEngine(localStorage.getItem("searchengine"));
@@ -383,9 +381,7 @@ const Home = (props) => {
 		setCityData(JSON.parse(localStorage.getItem('cityData')));
 		setStatus('reload');
 	};
-	const refreshAll = () => {
-		setRefresh(refresh + 1);
-	  };
+	
 
 	const changeBackgroundToImg = (e) => {
 		const backgroundNumber = e.currentTarget.children[0].dataset.index;
@@ -431,7 +427,7 @@ const Home = (props) => {
 				refreshEngines={refreshConfig}
 				refreshMailboxes={refreshConfig}
 				refreshNickname={refreshNickname}
-				refreshAll={refreshAll}
+				refresh={res}
 			/>
 			<Container>
 			<ModalContainer>
@@ -440,7 +436,6 @@ const Home = (props) => {
 						toggleDM={props.toggleDM} 
 						addModal={addModal}
 						mailModal={mailModal}
-						refreshAll={refreshAll}
 						changeCity={changeCity}
 						changeBackground={changeBackground}
 						configModal={configModal}
@@ -510,7 +505,7 @@ const Home = (props) => {
 					
 				</MenuContainer>
 			</ModalContainer>
-			<MailboxButton refreshAll={refreshAll} refreshMailboxes={refreshConfig} refreshData={refreshData} />
+			<MailboxButton refresh={res} refreshMailboxes={refreshConfig} refreshData={refreshData} />
 			</Container>
 			<Content>
 				<Time className={isVisible ? 'appear' : ''}><code>{time}</code></Time>
