@@ -6,6 +6,10 @@ export const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
+
+  @media (max-width: 500px) {
+	justify-content: center;
+}
 `;
 
 export const MenuContainer = styled.div`
@@ -464,7 +468,7 @@ export const MailForm = styled.form`
 	size: 100%;
 	
 	@media (max-width: 500px) {
-		margin-right: 15px;
+		display: none;
 	}
 
 svg {
