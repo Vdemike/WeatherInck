@@ -1,6 +1,13 @@
 import styled from "styled-components";
 import { css } from "styled-components";
 
+export const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+`;
+
 export const MenuContainer = styled.div`
 	padding: 30px 30px 0 0;
 	margin-left: 30px;
@@ -280,6 +287,30 @@ export const MenuIcon = styled.img`
 	height: 23px;
 `;
 
+export const MailmenuIcon = styled.img`
+	width: 23px;
+	height: 23px;
+	cursor: pointer;
+	transition: background 0.1s ease-in-out, text 0.1s;
+
+	${({ mailbox }) =>
+		mailbox &&
+		css`
+			color: ${() => {
+				if (mailbox === "gmail") return "#ff0000";
+				else if (mailbox === "yahoo") return "#410093";
+				else if (mailbox === "hotmail") return "#0072c6";
+			}};
+		`}
+
+	input[type="submit"] {
+		display: none;
+	}
+	svg {
+		cursor: pointer;
+	}
+`;
+
 export const WeatherMenuInfo = styled.div`
 	font-size: 20px;
 	padding: 0 5px;
@@ -348,23 +379,31 @@ export const UVColor = styled.div`
 
 // ? Content
 export const Time = styled.div`
-	padding: 1px 0;
-	color: #eee;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: 180px;
-	text-shadow: 0 0 8px #000;
+  padding: 1px 0;
+  color: #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 240px;
+  text-shadow: 0 0 8px #000;
+  opacity: 0; 
+  transform: translateY(20px); 
 
-	code {
-		padding: 2px;
-	}
+  code {
+    padding: 2px;
+  }
 
-	@media (max-width: 800px) {
-		font-size: 90px;
-		padding: 20px 0;
-	
-	}
+  @media (max-width: 800px) {
+    font-size: 130px;
+    padding: 20px 0 0 0;
+  }
+
+  transition: opacity 0.7s ease, transform 0.7s ease;
+
+  &.appear {
+    opacity: 1;
+    transform: translateY(0);
+  }
 `;
 export const Greetings = styled.div`
 	padding: 20px 0;
@@ -415,6 +454,42 @@ export const UrlInput = styled.input`
 	background: ${({ theme }) => theme.background};
 	transition: background 0.1s ease-in-out, text 0.1s;
 	width: 100%;
+`;
+
+export const MailForm = styled.form`
+	display: flex;
+	margin-top: 20px;
+	margin-right: 75px;
+	justify-content: flex-end;
+	size: 100%;
+	
+	@media (max-width: 500px) {
+		margin-right: 15px;
+	}
+
+svg {
+	font-size: 23px;
+}
+`;
+
+export const MailBox = styled.div`
+	height: 50px;
+	display: flex;
+	align-items: center;
+	font-size: 20px;
+	color: ${({ theme }) => theme.text};
+	background: ${({ theme }) => theme.background};
+	border-radius: ${({ corner }) => (corner ? "25px 25px 25px 25px" : null)};
+	padding: ${({ corner }) => (corner ? "0 15px" : "15px 0 0 15px")};
+	cursor: pointer;
+	transition: background 0.1s ease-in-out, text 0.1s;
+
+	input[type="submit"] {
+		display: none;
+	}
+	svg {
+		cursor: pointer;
+	}
 `;
 export const FunctionBox = styled.div`
 	height: 44px;

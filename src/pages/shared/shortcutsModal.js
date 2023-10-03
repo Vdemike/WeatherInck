@@ -1,9 +1,9 @@
-import React, { useRef } from "react";
+import React from "react";
 import Modal from "../../components/modal/modal";
 import ModalPartHeader from "../../components/modal/modalHeader";
 import ModalPartBody from "../../components/modal/modalBody";
 import ModalPartFooter from "../../components/modal/modalFooter";
-import { ModalButton, ModalCardContainer, ModalContainer, ModalInput, ModalLabel, ModalRow, ModalShortcut, ModalShortcutKey, ModalShortcutResult } from "../../styles/modal/main";
+import { ModalButton, ModalCardContainer, ModalContainer, ModalRow, ModalShortcut, ModalShortcutKey, ModalShortcutResult } from "../../styles/modal/main";
 
 const Shortcuts = (props) => {
 

@@ -10,10 +10,13 @@ import { DiBingSmall } from "react-icons/di";
 import { FaAmazon, FaReddit, FaTwitch, FaWikipediaW, FaYahoo, FaYoutube, FaImdb, FaGithub, FaTree } from "react-icons/fa";
 import { SiDuckduckgo } from "react-icons/si";
 import { FcGoogle } from "react-icons/fc";
+import { BiLogoGmail } from "react-icons/bi";
+import { PiMicrosoftOutlookLogoFill } from "react-icons/pi";
 
 const Settings = (props) => {
 	const form = useRef("");
 	const chosenEngine = localStorage.getItem("searchengine");
+	const chosenMailbox = localStorage.getItem("mailbox");
 	const chosenUnit = localStorage.getItem("tempunit");
 	const [searchInNew, setSearchInNew] = useState(localStorage.getItem("searchInNewWindow"));
 	const [cardsInNew, setCardsInNew] = useState(localStorage.getItem("cardsInNewWindow")); 
@@ -22,14 +25,17 @@ const Settings = (props) => {
 	const saveConfig = (e) => {
 		e.preventDefault();
 		const engines = form.current.searchEngine;
+		const mailboxes = form.current.mailbox;
 		const tempunits = form.current.tempunit;
 		const yourName = form.current.name.value;
-		let checkedEng, checkedUnit;
+		let checkedEng, checkedMailbox, checkedUnit;
 		const oldUnit = localStorage.getItem("tempunit");
 		engines.forEach((item) => (item.checked ? (checkedEng = item) : null));
+		mailboxes.forEach((item) => (item.checked ? (checkedMailbox = item) : null));
 		tempunits.forEach((item) => (item.checked ? (checkedUnit = item) : null));
 		
 		localStorage.setItem("searchengine", checkedEng.dataset.engine);
+		localStorage.setItem("mailbox", checkedMailbox.dataset.mailbox);
 		localStorage.setItem("tempunit", checkedUnit.dataset.unit);
 		localStorage.setItem("searchInNewWindow", searchInNew ? 'true' : '');
 		localStorage.setItem("cardsInNewWindow", cardsInNew ? 'true' : '');
@@ -38,6 +44,7 @@ const Settings = (props) => {
 		if (oldUnit !== checkedUnit.dataset.unit) props.refreshData();
 		props.close();
 		props.refreshEngines();
+		props.refreshMailboxes();
 		props.refreshNickname();
 	};
 	
@@ -103,6 +110,23 @@ const Settings = (props) => {
 							<ModalLabel type="ecosia" cp>
 								<DefaultRadio defaultChecked={chosenEngine === "ecosia"} name="searchEngine" data-engine="ecosia" />
 								<FaTree />
+							</ModalLabel>
+						</SelectContainer>
+					</ModalRow>
+					<ModalRow padTop>Select your mailbox:</ModalRow>
+					<ModalRow>
+					<SelectContainer>
+							<ModalLabel type="gmail" cp>
+								<DefaultRadio defaultChecked={chosenMailbox === "gmail"} name="mailbox" data-mailbox="gmail" />
+								<BiLogoGmail />
+							</ModalLabel>
+                            <ModalLabel type="yahoo" cp>
+								<DefaultRadio defaultChecked={chosenMailbox === "yahoo"} name="mailbox" data-mailbox="yahoo" />
+								<FaYahoo />
+							</ModalLabel>
+                            <ModalLabel type="hotmail" cp>
+								<DefaultRadio defaultChecked={chosenMailbox === "hotmail"} name="mailbox" data-mailbox="hotmail" />
+								<PiMicrosoftOutlookLogoFill />
 							</ModalLabel>
 						</SelectContainer>
 					</ModalRow>

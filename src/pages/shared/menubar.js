@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { AiOutlinePlusCircle, AiOutlineRollback } from 'react-icons/ai';
+import { AiOutlinePlusCircle, AiOutlineRollback, AiOutlineMail} from 'react-icons/ai';
 import { IoMdMoon } from "react-icons/io"
 import { BiCurrentLocation } from 'react-icons/bi';
 import { BsCloudSun } from "react-icons/bs";
@@ -31,6 +31,7 @@ const MenuBar = (props) => {
                     <AiOutlinePlusCircle />
                     <span>Add new card</span>
                 </MenuRow>
+
                 <MenuRow onClick={props.changeCity}>
                     <BiCurrentLocation />
                     <span>Change current city</span>
@@ -50,7 +51,11 @@ const MenuBar = (props) => {
                     <span>Change background</span>
                 </MenuRow>
                 {props.page === "landing" && 
-                <>
+                <>                
+                <MenuRow onClick={props.mailModal}>
+                    <AiOutlineMail />
+                    <span>Select your mailbox</span>
+                </MenuRow>
                 <MenuRow onClick={props.configModal}>
                     <RiSettings4Fill />
                     <span>Settings</span>

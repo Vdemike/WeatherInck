@@ -6,6 +6,7 @@ import { FcGoogle, FcWikipedia } from "react-icons/fc";
 import { MdSearch } from "react-icons/md";
 import { SiDuckduckgo } from "react-icons/si";
 import amazon from "../../styles/home/amazon.png";
+import  MailboxButton  from "../../components/mailboxButton";
 import {
 	AlertBox,
 	AlertDesc,
@@ -18,6 +19,7 @@ import {
 	FunctionBox,
 	Time,
 	Greetings,
+	Container,
 	MenuContainer,
 	MenuMoreWeatherInfo,
 	MenuTitle,
@@ -33,10 +35,12 @@ import WeatherWidget from "./parts/weatherwidget";
 import ModalRoot from "../../components/modal/modalRoot";
 import ModalService from "../../components/modal/services/modalService";
 import AddtabModal from "./addtabModal";
+import MailModal  from "./addmailModal";
 import EdittabModal from "./edittabModal";
 import CityModal from "./cityModal";
 import ConfigModal from "./configModal";
 import WidgetMobile from "./mobileWidget";
+
 
 import Cards from "./parts/cards";
 import Background from "../../layout/background";
@@ -48,9 +52,20 @@ import Shortcuts from "../shared/shortcutsModal";
 
 const Home = (props) => {
 	const [cityData, setCityData] = useState(null);
+	const [isVisible, setIsVisible] = useState(false);
+	const { mailboxButton } = props; 
+	
+	useEffect(() => {
+	  const timer = setTimeout(() => {
+		setIsVisible(true);
+	  }, 500);
+  
+	  return () => clearTimeout(timer);
+	}, []);
 
 	const [unit, setUnit] = useState("");
 	const [engine, setEngine] = useState("");
+	const [mailbox, setMailbox] = useState("");
 	const [time, setTime] = useState(
 		`${new Date().getHours() < 10 ? "0" : ""}${new Date().getHours()}:${new Date().getMinutes() < 10 ? "0" : ""}${new Date().getMinutes()}`
 	);
@@ -85,10 +100,19 @@ const Home = (props) => {
 			if (localStorage.getItem("cityData")) 
 				setCityData(JSON.parse(localStorage.getItem("cityData")));
 			else {
-				const baseCityData = {"city":"Warsaw","country":"PL","state":"Masovian Voivodeship","lat":52.2319581,"lon":21.0067249};
+				const baseCityData = {"city":"Brussels","country":"BE","state":"Brussels","lat":50.8503396,"lon":4.3517103};
 				localStorage.setItem("cityData", JSON.stringify(baseCityData));
 				setCityData(baseCityData);
 			}
+		if (!mailbox) 
+			if (localStorage.getItem("mailbox")) 
+				setMailbox(localStorage.getItem("mailbox"));
+			else {
+				const baseMailbox = 'gmail';
+				localStorage.setItem('mailbox', baseMailbox);
+				setMailbox(baseMailbox);
+			}
+
 		if (!engine) 
 			if (localStorage.getItem("searchengine"))
 				setEngine(localStorage.getItem("searchengine"));
@@ -156,7 +180,7 @@ const Home = (props) => {
 		};
 		if (status === "idle" || status === 'reload') 
 		fetchData();
-	}, [status, unit, cityData, backgroundType, engine, hexColor, shadow, nickname]);
+	}, [status, unit, cityData, backgroundType, engine, mailbox, hexColor, shadow, nickname]);
 
 
 	useEffect(() => {
@@ -168,7 +192,6 @@ const Home = (props) => {
 			setData(data);
 			setIcon(`https://openweathermap.org/img/wn/${data.current.weather[0].icon}.png`);
 			setStatus("Done");
-			// update current city data every 15min
 		}, 1000 * 60 * 15);
 		return () => {
 			clearInterval(interval);
@@ -298,6 +321,7 @@ const Home = (props) => {
 		else if (degrees >= 292.5 && degrees < 337.5) setWindDir("NW");
 	};
 
+
 	const searchUrl = (e) => {
 		e.preventDefault();
 		let enginePrefix;
@@ -318,8 +342,10 @@ const Home = (props) => {
 		
 		const whatDoWeSearch = e.currentTarget.url.value;
 
+
 		const specialChars = ['#', '%', '&'];
 		let formatSearchInput = whatDoWeSearch;
+		// eslint-disable-next-line array-callback-return
 		specialChars.some((element) => {
 			if (whatDoWeSearch.includes(element)) {
 				formatSearchInput = whatDoWeSearch
@@ -338,22 +364,29 @@ const Home = (props) => {
 	if (status === "Done" && sunrise === "") setAdditionals();
 
 	const addModal = () => ModalService.open(AddtabModal);
+	const mailModal = () => ModalService.open(MailModal);
 	const addEditModal = () => ModalService.open(EdittabModal);
 	const changeCity = () => ModalService.open(CityModal);
 	const changeBackground = () => ModalService.open(BackgroundModal);
 	const configModal = () => ModalService.open(ConfigModal);
 	const openWidget = () => ModalService.open(WidgetMobile);
 	const showShortcuts = () => ModalService.open(Shortcuts);
+	const [refresh, setRefresh] = useState(0);
 	const refreshCards = () => setRes({});
 	const refreshConfig = () => {
 		setEngine(localStorage.getItem("searchengine"));
 		setUnit(localStorage.getItem("tempunit"));
+		setMailbox(localStorage.getItem("mailbox"));
 	};
 	const refreshNickname = () => setNickname(localStorage.getItem('nickname'));
 	const refreshData = () => {
 		setCityData(JSON.parse(localStorage.getItem('cityData')));
 		setStatus('reload');
 	};
+	const refreshAll = () => {
+		setRefresh(refresh + 1);
+	  };
+
 	const changeBackgroundToImg = (e) => {
 		const backgroundNumber = e.currentTarget.children[0].dataset.index;
 		localStorage.setItem("backgroundType", 'photo');
@@ -383,6 +416,7 @@ const Home = (props) => {
 	const changeBackgroundShadow = (shadowValue) => setShadow(shadowValue);
 
 	return (
+		
 		<Background bgType={backgroundType} bgNumber={backgroundNumber} hexColor={hexColor} shadowValue={shadow}>
 			<ModalRoot 
 				data={data} 
@@ -394,14 +428,19 @@ const Home = (props) => {
 				changeBackgroundShadow={changeBackgroundShadow}
 				refreshCards={refreshCards} 
 				refreshData={refreshData} 
-				refreshEngines={refreshConfig} 
+				refreshEngines={refreshConfig}
+				refreshMailboxes={refreshConfig}
 				refreshNickname={refreshNickname}
+				refreshAll={refreshAll}
 			/>
-			<ModalContainer flex>
+			<Container>
+			<ModalContainer>
 				<MenuContainer>
 					<MenuBar
 						toggleDM={props.toggleDM} 
 						addModal={addModal}
+						mailModal={mailModal}
+						refreshAll={refreshAll}
 						changeCity={changeCity}
 						changeBackground={changeBackground}
 						configModal={configModal}
@@ -468,11 +507,13 @@ const Home = (props) => {
 							)}
 						</ModalContainer>
 					)}
+					
 				</MenuContainer>
 			</ModalContainer>
-
+			<MailboxButton refreshAll={refreshAll} refreshMailboxes={refreshConfig} refreshData={refreshData} />
+			</Container>
 			<Content>
-				<Time><code>{time}</code></Time>
+				<Time className={isVisible ? 'appear' : ''}><code>{time}</code></Time>
 				<Greetings>
 					<span>{message}{nickname ? ',' : ''} <strong>{nickname ? ` ${nickname}` : ''}{mark}</strong></span>
 				</Greetings>
@@ -492,7 +533,6 @@ const Home = (props) => {
 							{engine === "imdb" && <FaImdb />}
 							{engine === "github" && <FaGithub />}
 							{engine === "ecosia" && <FaTree />}
-
 						</FunctionBox>
 						<FunctionBox as="label" type="image" corner>
 							<MdSearch />
@@ -500,6 +540,7 @@ const Home = (props) => {
 						</FunctionBox>
 					</SearchBox>
 				</SearchForm>
+			
 				{localStorage.getItem("cardnames") && <Cards addCard={() => addModal} refresh={res} openEdit={() => addEditModal} />}
 			</Content>
 		</Background>

@@ -96,6 +96,8 @@ export const ModalButton = styled.div`
 
 export const ModalContainer = styled.div`
 	width: 100%;
+	display: flex;
+	
 	height: ${({ fullh }) => (fullh ? "100%" : "auto")};
 
 	${({ flex, mobileSwap }) =>
@@ -154,7 +156,8 @@ export const ModalLabel = styled.label`
 					else if (type === "imdb") return "#ff9900";
 					else if (type === "github") return "#F05435";
 					else if (type === "ecosia") return "#0C8484";
-				
+					else if (type === "gmail") return "#ff0000";
+					else if (type === "hotmail") return "#0072c6";
 				}};
 			}
 
@@ -178,7 +181,9 @@ export const ModalLabel = styled.label`
 					else if (type === "imdb") return "#ff9900";
 					else if (type === "github") return "#F05435";
 					else if (type === "ecosia") return "#0C8484";
-				
+					else if (type === "gmail") return "#ff0000";
+					else if (type === "hotmail") return "#0072c6";
+
 				}};
 			}
 		`}

@@ -7,7 +7,6 @@ import Weather from "./pages/weather/main";
 import { useDarkMode } from "./components/dm";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Toggle from "./components/dmToggle";
-
 const App = () => {
 	const [theme, toggleTheme, mountedComponent] = useDarkMode();
 	const themeMode = theme === "light" ? lightTheme : darkTheme;
@@ -17,7 +16,7 @@ const App = () => {
 	return (
 		<ThemeProvider theme={themeMode}>
 			<GlobalStyle />
-			<Toggle theme={theme} toggleTheme={toggleTheme} onClick={toggleTheme} dark={theme === "light"} />
+			<Toggle theme={theme} toggleTheme={toggleTheme} onClick={toggleTheme} dark={theme === "light"} flex/>
 			<BrowserRouter>
 				<Routes>
 					<Route index path="/" element={<Home toggleDM={toggleTheme} />} />
