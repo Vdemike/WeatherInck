@@ -23,6 +23,7 @@ const AddtabModal = (props) => {
 		localStorage.setItem("cardnames", JSON.stringify(cardNames));
 		localStorage.setItem("cardurls", JSON.stringify(cardUrls));
 		props.close();
+		props.closeModal();
 		props.refreshCards();
 	};
 
@@ -41,7 +42,11 @@ const AddtabModal = (props) => {
 			</ModalPartBody>
 			<ModalPartFooter>
 				<ModalCardContainer footer>
-					<ModalButton onClick={props.close} hov>
+					<ModalButton             
+					onClick={() => {
+						props.close();
+						props.closeModal();
+						}} hov>
 						Cancel
 					</ModalButton>
 					<ModalButton onClick={saveCard} final>

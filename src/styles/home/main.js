@@ -6,6 +6,20 @@ export const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  position: fixed;
+
+  @media (max-width: 500px) {
+		position: relative;
+	}
+
+`;
+export const ContainerFooter = styled.div`
+  display: flex;
+  position: fixed;
+  align-items: center;
+  bottom: 10px;
+  justify-content: space-between;
+  width: 100%;
 
 `;
 
@@ -16,6 +30,7 @@ export const MenuContainer = styled.div`
 	font-size: 25px;
 	display: flex;
 	align-items: center;
+	opacity: 0.9;
 	color: ${({ theme }) => theme.white};
 	z-index: 20;
 	position: relative;
@@ -69,6 +84,12 @@ export const Content = styled.div`
 	align-content: center;
 	color: ${({ theme }) => theme.text};
 	margin-bottom: 150px;
+
+	${({ isBlurred }) =>
+    isBlurred &&
+    css`
+      filter: blur(8px);
+    `}
 
 	@media (max-width: 800px) {
 		width: 100%;
@@ -288,7 +309,7 @@ export const MenuIcon = styled.img`
 	height: 23px;
 `;
 
-export const MailmenuIcon = styled.img`
+export const FeatureIcon = styled.img`
 	width: 23px;
 	height: 23px;
 	cursor: pointer;
@@ -380,7 +401,6 @@ export const UVColor = styled.div`
 
 // ? Content
 export const Time = styled.div`
-  padding: 1px 0;
   color: #eee;
   display: flex;
   justify-content: center;
@@ -455,6 +475,41 @@ export const UrlInput = styled.input`
 	background: ${({ theme }) => theme.background};
 	transition: background 0.1s ease-in-out, text 0.1s;
 	width: 100%;
+`;
+
+export const CalculatorForm = styled.form`
+	display: flex;
+	margin-left: 20px;
+	justify-content: flex-end;
+	size: 100%;
+	
+	@media (max-width: 500px) {
+		margin-left: 8px;
+	}
+
+svg {
+	font-size: 23px;
+}
+`;
+
+export const CalculatorBox = styled.div`
+	height: 50px;
+	display: flex;
+	align-items: center;
+	font-size: 20px;
+	color: ${({ theme }) => theme.text};
+	background: ${({ theme }) => theme.background};
+	border-radius: ${({ corner }) => (corner ? "25px 25px 25px 25px" : null)};
+	padding: ${({ corner }) => (corner ? "0 15px" : "15px 0 0 15px")};
+	cursor: pointer;
+	transition: background 0.1s ease-in-out, text 0.1s;
+
+	input[type="submit"] {
+		display: none;
+	}
+	svg {
+		cursor: pointer;
+	}
 `;
 
 export const MailForm = styled.form`

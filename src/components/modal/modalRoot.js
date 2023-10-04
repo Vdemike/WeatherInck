@@ -14,6 +14,7 @@ const ModalRoot = (props) => {
 	const refreshEngines = () => props.refreshEngines();
 	const refreshNickname = () => props.refreshNickname();
 	const refreshMailboxes = () => props.refreshMailboxes();
+	const closeModal = () => props.closeModal();
 
 	useEffect(() => {
 		ModalService.on("open", ({ component, props }) => {
@@ -45,6 +46,7 @@ const ModalRoot = (props) => {
 					refreshEngines={refreshEngines}
 					refreshMailboxes={refreshMailboxes}
 					refreshNickname={refreshNickname}
+					closeModal={closeModal}
 					style={{ display: "block" }}
 					data={props.data}
 					wd={props.wdir}

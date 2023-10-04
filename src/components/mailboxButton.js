@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaYahoo } from "react-icons/fa";
 import { BiLogoGmail } from "react-icons/bi";
 import { PiMicrosoftOutlookLogoFill } from "react-icons/pi";
-import { MailBox, MailForm, MailmenuIcon } from "../styles/home/main";
+import { MailBox, MailForm, FeatureIcon } from "../styles/home/main";
 
 const MailboxButton = (props) => {
   const [mailbox, setMailbox] = useState("");
@@ -35,13 +35,13 @@ const MailboxButton = (props) => {
     <MailForm onSubmit={mailboxButton}>
       <MailBox as="label" type="image" corner mailbox={mailbox}>
         {mailbox === "yahoo" && (
-          <MailmenuIcon as={FaYahoo} />
+          <FeatureIcon as={FaYahoo} />
         )}
         {mailbox === "gmail" && (
-          <MailmenuIcon as={BiLogoGmail} />
+          <FeatureIcon as={BiLogoGmail} />
         )}
         {mailbox === "hotmail" && (
-          <MailmenuIcon as={PiMicrosoftOutlookLogoFill} />
+          <FeatureIcon as={PiMicrosoftOutlookLogoFill} />
         )}
         <input type="submit" />
       </MailBox>

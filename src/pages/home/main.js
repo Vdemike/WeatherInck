@@ -20,6 +20,7 @@ import {
 	Time,
 	Greetings,
 	Container,
+	ContainerFooter,
 	MenuContainer,
 	MenuMoreWeatherInfo,
 	MenuTitle,
@@ -49,11 +50,13 @@ import MenuBar from "../shared/menubar";
 import { Link } from "react-router-dom";
 import BackgroundModal from "./changeBackgroundModal";
 import Shortcuts from "../shared/shortcutsModal";
+import CalculatorButton from "../../components/calculatorButton";
 
 const Home = (props) => {
 	const [cityData, setCityData] = useState(null);
 	const [isVisible, setIsVisible] = useState(false);
-	
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
 	useEffect(() => {
 	  const timer = setTimeout(() => {
 		setIsVisible(true);
@@ -89,10 +92,11 @@ const Home = (props) => {
 	const [shadow, setShadow] = useState(null);
 
 	const searchRef = useRef(null);
-
 	const apikey = "0849360447e69eda07189e0b383ff858";
 
 	useClickAway(alertsRef, () => openAlerts(false), ["mouseup"]);
+
+
 
 	useEffect(() => {
 		if(!cityData)
@@ -362,14 +366,26 @@ const Home = (props) => {
 
 	if (status === "Done" && sunrise === "") setAdditionals();
 
-	const addModal = () => ModalService.open(AddtabModal);
-	const mailModal = () => ModalService.open(MailModal);
-	const addEditModal = () => ModalService.open(EdittabModal);
-	const changeCity = () => ModalService.open(CityModal);
-	const changeBackground = () => ModalService.open(BackgroundModal);
-	const configModal = () => ModalService.open(ConfigModal);
-	const openWidget = () => ModalService.open(WidgetMobile);
-	const showShortcuts = () => ModalService.open(Shortcuts);
+	const openModal = (modalFunction) => {
+		modalFunction();
+		setIsModalOpen(true);
+	  };
+	
+
+	  const addModal = () => openModal(() => ModalService.open(AddtabModal));
+	  const mailModal = () => openModal(() => ModalService.open(MailModal));
+	  const addEditModal = () => openModal(() => ModalService.open(EdittabModal));
+	  const changeCity = () => openModal(() => ModalService.open(CityModal));
+	  const changeBackground = () => openModal(() => ModalService.open(BackgroundModal));
+	  const configModal = () => openModal(() => ModalService.open(ConfigModal));
+
+	  const openWidget = () => openModal(() => ModalService.open(WidgetMobile));
+	  const showShortcuts = () => openModal(() => ModalService.open(Shortcuts));
+
+	const closeModal = () => {
+		setIsModalOpen(false);
+	  };
+	
 	const refreshCards = () => setRes({});
 	const refreshConfig = () => {
 		setEngine(localStorage.getItem("searchengine"));
@@ -382,6 +398,7 @@ const Home = (props) => {
 		setStatus('reload');
 	};
 	
+
 
 	const changeBackgroundToImg = (e) => {
 		const backgroundNumber = e.currentTarget.children[0].dataset.index;
@@ -422,7 +439,8 @@ const Home = (props) => {
 				changeBackgroundToCustom={changeBackgroundToCustom}
 				changeBackgroundToColor={changeBackgroundToColor}
 				changeBackgroundShadow={changeBackgroundShadow}
-				refreshCards={refreshCards} 
+				refreshCards={refreshCards}
+				closeModal={closeModal}
 				refreshData={refreshData} 
 				refreshEngines={refreshConfig}
 				refreshMailboxes={refreshConfig}
@@ -507,7 +525,7 @@ const Home = (props) => {
 			</ModalContainer>
 			<MailboxButton refresh={res} refreshMailboxes={refreshConfig} refreshData={refreshData} />
 			</Container>
-			<Content>
+			<Content isBlurred={isModalOpen}>
 				<Time className={isVisible ? 'appear' : ''}><code>{time}</code></Time>
 				<Greetings>
 					<span>{message}{nickname ? ',' : ''} <strong>{nickname ? ` ${nickname}` : ''}{mark}</strong></span>
@@ -535,9 +553,11 @@ const Home = (props) => {
 						</FunctionBox>
 					</SearchBox>
 				</SearchForm>
-			
 				{localStorage.getItem("cardnames") && <Cards addCard={() => addModal} refresh={res} openEdit={() => addEditModal} />}
 			</Content>
+			<ContainerFooter>
+			<CalculatorButton />
+			</ContainerFooter>
 		</Background>
 	);
 };

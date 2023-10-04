@@ -53,7 +53,10 @@ const EdittabModal = (props) => {
 			</ModalPartBody>
 			<ModalPartFooter>
 				<ModalCardContainer footer>
-					<ModalButton onClick={props.close} hov>
+					<ModalButton onClick={() => {
+						props.close();
+						props.closeModal();
+						}} hov>
 						Cancel
 					</ModalButton>
 					<ModalButton onClick={editCard} final>

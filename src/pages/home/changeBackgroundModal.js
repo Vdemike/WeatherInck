@@ -23,24 +23,28 @@ const BackgroundModal = (props) => {
 	const handlePhotoClick = (e) => {
 		props.changeBackgroundToImg(e);
 		props.close();
+		props.closeModal();
 		localStorage.setItem('customBackgroundURL', '');
 	}
 
 	const handleLapseClick = () => {
 		props.changeBackgroundToLapse();
 		props.close();
+		props.closeModal();
 		localStorage.setItem('customBackgroundURL', '');
 	}
 
 	const handleChangeCustomBg = () => {
 		props.changeBackgroundToCustom();
 		props.close();
+		props.closeModal();
 		localStorage.setItem('customBackgroundURL', customUrl.current.value);
 	}
 
 	const handleChangeBgToColor = () => {
 		props.changeBackgroundToColor(color.hex);
 		props.close();
+		props.closeModal();
 		localStorage.setItem('customBackgroundURL', '');
 		localStorage.setItem('backgroundColor', color.hex);
 	}

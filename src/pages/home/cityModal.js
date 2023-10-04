@@ -121,7 +121,11 @@ const CityModal = (props) => {
 				</ModalContainer>
 			</ModalPartBody>
 			<ModalPartFooter>
-				<ModalButton onClick={props.close} hov>
+				<ModalButton 
+				onClick={() => {
+					props.close();
+					props.closeModal();
+					}} hov>
 					Cancel
 				</ModalButton>
 				<ModalButton final onClick={saveCity}>

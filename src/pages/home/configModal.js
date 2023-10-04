@@ -21,6 +21,7 @@ const Settings = (props) => {
 	const [searchInNew, setSearchInNew] = useState(localStorage.getItem("searchInNewWindow"));
 	const [cardsInNew, setCardsInNew] = useState(localStorage.getItem("cardsInNewWindow")); 
 	const nameValue = localStorage.getItem('nickname');
+	
 
 	const saveConfig = (e) => {
 		e.preventDefault();
@@ -28,12 +29,14 @@ const Settings = (props) => {
 		const mailboxes = form.current.mailbox;
 		const tempunits = form.current.tempunit;
 		const yourName = form.current.name.value;
+
+
 		let checkedEng, checkedMailbox, checkedUnit;
 		const oldUnit = localStorage.getItem("tempunit");
 		engines.forEach((item) => (item.checked ? (checkedEng = item) : null));
 		mailboxes.forEach((item) => (item.checked ? (checkedMailbox = item) : null));
 		tempunits.forEach((item) => (item.checked ? (checkedUnit = item) : null));
-		
+
 		localStorage.setItem("searchengine", checkedEng.dataset.engine);
 		localStorage.setItem("mailbox", checkedMailbox.dataset.mailbox);
 		localStorage.setItem("tempunit", checkedUnit.dataset.unit);
@@ -46,6 +49,7 @@ const Settings = (props) => {
 		props.refreshEngines();
 		props.refreshMailboxes();
 		props.refreshNickname();
+		
 	};
 	
 	return (
@@ -182,7 +186,10 @@ const Settings = (props) => {
 				</ModalContainer>
 			</ModalPartBody>
 			<ModalPartFooter>
-				<ModalButton onClick={props.close} hov>
+				<ModalButton onClick={() => {
+					props.close();
+					props.closeModal();
+					}} hov>
 					Cancel
 				</ModalButton>
 				<ModalButton onClick={saveConfig} final>
