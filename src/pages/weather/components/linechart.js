@@ -32,7 +32,6 @@ const LineChart = ({chartDays, chartHours, chartIcons, unit, title}) => {
                         callbacks: {
                             title: function(context) {
                                 const dataIndex = context[0].dataIndex;
-                                const icon = chartIcons[dataIndex];
                                 const hour = chartHours[dataIndex];
                                 return `${hour}`;
                             },

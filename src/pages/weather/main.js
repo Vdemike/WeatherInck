@@ -204,7 +204,7 @@ export default function Weather(props) {
 			setStatus("Done");
 		};
 		if (status === "idle") fetchData();
-    }, [cityData, recentCities, status, unit, backgroundType]);
+    }, [cityData, recentCities, status, unit, backgroundType, hexColor, shadow]);
 
 	const changeUnit = (newUnit) => {
 		if (newUnit !== unit) {
@@ -220,13 +220,13 @@ export default function Weather(props) {
 
 	useEffect(() => {
 		if (days && data.message === 0) setChartDays(extractDaysData(days));
-	}, [days]);
+	}, [data.message, days]);
 	useEffect(() => {
 		if (days && data.message === 0) setChartHours(extractHoursData(days));
-	}, [days]);
+	}, [data.message, days]);
 	useEffect(() => {
 		if (days && data.message === 0) setChartIcons(extractIconsData(days));
-	}, [days]);
+	}, [data.message, days]);
 
 	useEffect(() => {
 		if (chartDays && chartHours)
@@ -237,7 +237,7 @@ export default function Weather(props) {
 		if (days && data.message === 0) {
 			setDaysInfo(generateNextDays(days));
 		}
-	}, [days]);
+	}, [data.message, days]);
 
 	const changeDay = (e) => setActiveChart(e.currentTarget.value);
 

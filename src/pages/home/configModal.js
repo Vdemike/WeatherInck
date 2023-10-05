@@ -46,10 +46,10 @@ const Settings = (props) => {
 
 		if (oldUnit !== checkedUnit.dataset.unit) props.refreshData();
 		props.close();
+		props.closeModal();
 		props.refreshEngines();
 		props.refreshMailboxes();
 		props.refreshNickname();
-		
 	};
 	
 	return (

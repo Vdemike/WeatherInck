@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { WeatherBox, WeatherCurrentDescription, WeatherCurrentTemp, WeatherCurrentTempVal, WeatherRow, WeatherRowOthers } from '../../../styles/weather/days';
 import { UnitFromText } from '../../shared/helper/unit';
 
