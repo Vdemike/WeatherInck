@@ -17,6 +17,30 @@ export const ModalSection = styled.div`
 			align-items: center;
 		`}
 `;
+export const CalculatorModalBox = styled.div`
+	display: block;
+	overflow: auto;
+	${({ bgGrid }) => 
+		bgGrid &&
+		css`
+			display: grid;
+			grid-template-rows: 60px 1fr 60px;
+		`}
+	background: ${({ theme }) => theme.background};
+	border: 1px solid ${({ theme }) => theme.background2};
+	color: ${({ theme }) => theme.text};
+	padding: 10px 40px;
+	border-radius: 10px;
+	min-width: 400px;
+	max-height: 95%;
+	margin: auto;
+	position: relative;
+	@media (max-width: 500px) {
+		min-width: unset;
+		width: 95%;
+	}
+`;
+
 export const ModalBox = styled.div`
 	display: block;
 	overflow: auto;
@@ -38,6 +62,8 @@ export const ModalBox = styled.div`
 	@media (max-width: 500px) {
 		min-width: unset;
 		width: 95%;
+		padding: 20px 10px;
+
 	}
 `;
 export const ModalHeader = styled.div`

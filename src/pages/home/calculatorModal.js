@@ -1,6 +1,5 @@
 import React from "react";
-import Modal from "../../components/modal/modal";
-import ModalPartBody from "../../components/modal/modalBody";
+import CalculatorModalForm from "../../components/modal/modal";
 import ModalPartFooter from "../../components/modal/modalFooter";
 import  Calculator  from "../../components/calculator";
 import {
@@ -11,10 +10,8 @@ import {
 const CalculatorModal = (props) => {
 
   return (
-    <Modal>
-      <ModalPartBody>
-                <Calculator />
-      </ModalPartBody>
+    <CalculatorModalForm>
+        <Calculator />
       <ModalPartFooter>
         <ModalCardContainer footer>
           <ModalButton
@@ -28,7 +25,7 @@ const CalculatorModal = (props) => {
           </ModalButton>
         </ModalCardContainer>
       </ModalPartFooter>
-    </Modal>
+    </CalculatorModalForm>
   );
 };
 
